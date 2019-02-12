@@ -9,11 +9,20 @@ namespace SeLie.Infrastructure
 {
     public static partial class Extension
     {
+        #region ILevel
+
+        public static int SetLevel<TEntity, TPrimaryKey>(this IRepository<TEntity, TPrimaryKey> e, TPrimaryKey parentId)
+            where TEntity : EntityLevelBase, IEntity<TPrimaryKey>
+            => e.FirstOrDefault(_ => _.Id.Equals(parentId))?.Level + 1 ?? 1;
+
+        #endregion
+
         #region EntityBase
 
         #region Info
 
-        public static bool IsVersion<TEntity>(this TEntity entity, int value) where TEntity : EntityBase => entity.Version.Equals(value);
+        public static bool IsVersion<TEntity>(this TEntity entity, int value) where TEntity : EntityBase =>
+            entity.Version.Equals(value);
 
         public static TEntity SetVersion<TEntity>(this TEntity entity, int value) where TEntity : EntityBase
         {
@@ -34,16 +43,17 @@ namespace SeLie.Infrastructure
         public static int GetVersion<TEntity>(this TEntity entity) where TEntity : EntityBase => entity.Version;
 
         public static bool IsModifiedUser<TEntity>(this TEntity entity, string name) where TEntity : EntityBase =>
-            entity.ModifiedUser.ToLower().Equals(name.Trim().ToLower());
+            entity.ModifiedUser.ToLower().Equals(name.SafeTrim().ToLower());
 
         public static TEntity SetModifiedUser<TEntity>(this TEntity entity, string name) where TEntity : EntityBase
         {
-            entity.ModifiedUser = name + string.Empty;
+            entity.ModifiedUser = name.SafeTrim();
 
             return entity;
         }
 
-        public static string GetModifiedUser<TEntity>(this TEntity entity) where TEntity : EntityBase => entity.ModifiedUser;
+        public static string GetModifiedUser<TEntity>(this TEntity entity) where TEntity : EntityBase =>
+            entity.ModifiedUser;
 
         public static TEntity SetModeifiedTime<TEntity>(this TEntity entity, DateTime time) where TEntity : EntityBase
         {
@@ -59,7 +69,8 @@ namespace SeLie.Infrastructure
             return entity;
         }
 
-        public static DateTime GetModifiedTime<TEntity>(this TEntity entity) where TEntity : EntityBase => entity.ModifiedTime;
+        public static DateTime GetModifiedTime<TEntity>(this TEntity entity) where TEntity : EntityBase =>
+            entity.ModifiedTime;
 
         public static TEntity SetInfo<TEntity>(this TEntity entity, string name) where TEntity : EntityBase =>
             entity.SetModifiedUser(name).UpdateModifiedTime().UpdateVersion();
@@ -108,13 +119,14 @@ namespace SeLie.Infrastructure
             return entity;
         }
 
-        public static bool IsOrder<TEntity>(this TEntity entity, int value) where TEntity : EntityBase => entity.Order.Equals(value);
+        public static bool IsOrder<TEntity>(this TEntity entity, int value) where TEntity : EntityBase =>
+            entity.Order.Equals(value);
 
-        public static List<TEntity> OrderbyOrder<TEntity>(this IEnumerable<TEntity> entity) where TEntity : EntityBase =>
+        public static List<TEntity> OrderbyOrder<TEntity>(this IEnumerable<TEntity> entity)
+            where TEntity : EntityBase =>
             entity.OrderBy(_ => _.Order).ToList();
 
         #endregion
-
 
         #endregion
 
@@ -125,11 +137,13 @@ namespace SeLie.Infrastructure
         public static bool IsDeletable<TEntity>(this TEntity entity) where TEntity : IDeletable => entity.Deletable;
 
 
-        public static List<TEntity> GetEnabledAndNotDeleted<TEntity>(this IEnumerable<TEntity> entity) where TEntity : EntityBase, IDeletable =>
+        public static List<TEntity> GetEnabledAndNotDeleted<TEntity>(this IEnumerable<TEntity> entity)
+            where TEntity : EntityBase, IDeletable =>
             entity.Where(_ => _.Enabled && !_.Deleted).ToList();
 
 
-        public static List<TEntity> GetNotDeleted<TEntity>(this IEnumerable<TEntity> entity) where TEntity : IDeletable =>
+        public static List<TEntity> GetNotDeleted<TEntity>(this IEnumerable<TEntity> entity)
+            where TEntity : IDeletable =>
             entity.Where(_ => !_.Deleted).ToList();
 
         public static List<TEntity> TryDelete<TEntity>(this IEnumerable<TEntity> entity) where TEntity : IDeletable =>
@@ -184,15 +198,6 @@ namespace SeLie.Infrastructure
 
             return entity;
         }
-
-
-        #endregion
-
-        #region ILevel
-
-        public static int SetLevel<TEntity, TPrimaryKey>(this IRepository<TEntity, TPrimaryKey> e, TPrimaryKey parentId)
-            where TEntity : EntityLevelBase, IEntity<TPrimaryKey>
-            => e.FirstOrDefault(_ => _.Id.Equals(parentId))?.Level + 1 ?? 1;
 
         #endregion
     }

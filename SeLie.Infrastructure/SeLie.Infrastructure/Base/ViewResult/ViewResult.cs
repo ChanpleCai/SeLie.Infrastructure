@@ -2,14 +2,10 @@
 {
     public class ViewResult : IViewResult<string>
     {
-        private const string Succ = "Success!";
-
-        private const string Fail = "Failed!";
-
         public ViewResult(bool success)
         {
             Success = success;
-            Message = success ? Succ : Fail;
+            Message = success ? Constant.Success : Constant.Failed;
         }
 
         public ViewResult(bool success, string message)
@@ -27,15 +23,10 @@
 
     public class ViewResult<TResult> : IViewResult<TResult>
     {
-
-        private const string Succ = "Success!";
-
-        private const string Fail = "Failed!";
-
         public ViewResult(bool success, TResult result)
         {
             Success = success;
-            Message = success ? Succ : Fail;
+            Message = success ? Constant.Success : Constant.Failed;
             Result = result;
         }
 
@@ -49,7 +40,7 @@
         public ViewResult(bool success)
         {
             Success = success;
-            Message = success ? Succ : Fail;
+            Message = success ? Constant.Success : Constant.Failed;
             Result = default;
         }
 
@@ -66,5 +57,4 @@
 
         public TResult Result { get; set; }
     }
-
 }

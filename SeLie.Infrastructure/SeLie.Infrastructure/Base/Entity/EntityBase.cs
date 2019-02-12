@@ -17,5 +17,4 @@ namespace SeLie.Infrastructure.Base
 
         public virtual int Order { get; set; } = 1;
     }
-
 }
