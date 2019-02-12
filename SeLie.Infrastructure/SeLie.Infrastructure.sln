@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeLie.Infrastructure", "SeLie.Infrastructure\SeLie.Infrastructure.csproj", "{F528BC80-B16A-48AD-9F45-A2A6A4A9E707}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SeLie.Infrastructure.Tests", "SeLie.Infrastructure.Tests\SeLie.Infrastructure.Tests.fsproj", "{6F6EB822-F928-4078-8B7C-441F1022A14B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F528BC80-B16A-48AD-9F45-A2A6A4A9E707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F528BC80-B16A-48AD-9F45-A2A6A4A9E707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F528BC80-B16A-48AD-9F45-A2A6A4A9E707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F528BC80-B16A-48AD-9F45-A2A6A4A9E707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F6EB822-F928-4078-8B7C-441F1022A14B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F6EB822-F928-4078-8B7C-441F1022A14B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F6EB822-F928-4078-8B7C-441F1022A14B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F6EB822-F928-4078-8B7C-441F1022A14B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E85F28D8-EE4D-48B9-B497-FA7DE49EE940}
+	EndGlobalSection
+EndGlobal
