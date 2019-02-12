@@ -25,21 +25,21 @@
         public string Result { get; set; } = string.Empty;
     }
 
-    public class ViewResult<T> : IViewResult<T>
+    public class ViewResult<TResult> : IViewResult<TResult>
     {
 
         private const string Succ = "Success!";
 
         private const string Fail = "Failed!";
 
-        public ViewResult(bool success, T result)
+        public ViewResult(bool success, TResult result)
         {
             Success = success;
             Message = success ? Succ : Fail;
             Result = result;
         }
 
-        public ViewResult(bool success, string message, T result)
+        public ViewResult(bool success, string message, TResult result)
         {
             Success = success;
             Message = message;
@@ -64,7 +64,7 @@
 
         public string Message { get; set; }
 
-        public T Result { get; set; }
+        public TResult Result { get; set; }
     }
 
 }

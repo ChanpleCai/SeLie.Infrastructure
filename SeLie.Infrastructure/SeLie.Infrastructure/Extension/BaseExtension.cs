@@ -7,45 +7,45 @@ namespace SeLie.Infrastructure
     {
         #region Object
 
-        public static void CheckNotNull<T>(this T e)
+        public static void CheckNotNull<TObject>(this TObject obj)
         {
 #pragma warning disable IDE0041 // Use 'is null' check
-            if (ReferenceEquals(e, null))
+            if (ReferenceEquals(obj, null))
 #pragma warning restore IDE0041 // Use 'is null' check
-                throw new ArgumentNullException(nameof(e), $"Please make sure argument {typeof(T)} is not null");
+                throw new ArgumentNullException(nameof(obj), $"Please make sure argument {typeof(TObject)} is not null");
         }
 
         #endregion
 
         #region Enum
 
-        public static T AddFlag<T>(this T e, T flag) where T : Enum =>
-            (T)Enum.ToObject(typeof(T), Convert.ToInt32(e) | Convert.ToInt32(flag));
+        public static TEnum AddFlag<TEnum>(this TEnum e, TEnum flag) where TEnum : Enum =>
+            (TEnum)Enum.ToObject(typeof(TEnum), Convert.ToInt32(e) | Convert.ToInt32(flag));
 
 
-        public static T RemoveFlag<T>(this T e, T flag) where T : Enum =>
-            (T)Enum.ToObject(typeof(T), Convert.ToInt32(e) & ~Convert.ToInt32(flag));
+        public static TEnum RemoveFlag<TEnum>(this TEnum e, TEnum flag) where TEnum : Enum =>
+            (TEnum)Enum.ToObject(typeof(TEnum), Convert.ToInt32(e) & ~Convert.ToInt32(flag));
 
 
-        public static bool IsNotSingleFlag<T>(this T e) where T : Enum
+        public static bool IsNotSingleFlag<TEnum>(this TEnum e) where TEnum : Enum
         {
             int a = Convert.ToInt32(e);
             return a == 0 || (a & (a - 1)) != 0;
         }
 
 
-        public static IEnumerable<T> GetFlags<T>(this T e) where T : Enum
+        public static IEnumerable<TEnum> GetFlags<TEnum>(this TEnum e) where TEnum : Enum
         {
-            foreach (T t in Enum.GetValues(typeof(T)))
+            foreach (TEnum t in Enum.GetValues(typeof(TEnum)))
                 if (e.HasFlag(t))
                     yield return t;
         }
 
 
-        public static void CheckSingleFlag<T>(this T e) where T : Enum
+        public static void CheckSingleFlag<TEnum>(this TEnum e) where TEnum : Enum
         {
             if (e.IsNotSingleFlag())
-                throw new ArgumentException($"You can only add single {typeof(T)} value at a time.", nameof(e));
+                throw new ArgumentException($"You can only add single {typeof(TEnum)} value at a time.", nameof(e));
         }
 
         #endregion

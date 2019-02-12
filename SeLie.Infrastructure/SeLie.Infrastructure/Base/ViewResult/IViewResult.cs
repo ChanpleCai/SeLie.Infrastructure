@@ -7,8 +7,8 @@
         string Message { get; set; }
     }
 
-    public interface IViewResult<TClass> : IViewResult
+    public interface IViewResult<TResult> : IViewResult
     {
-        TClass Result { get; set; }
+        TResult Result { get; set; }
     }
 }
