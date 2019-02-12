@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
+    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="4.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <Folder Include="Common\Flow\" />
   </ItemGroup>
 
 </Project>
