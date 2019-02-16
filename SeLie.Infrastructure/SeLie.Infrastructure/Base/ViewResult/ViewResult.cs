@@ -18,7 +18,7 @@
 
         public string Message { get; set; }
 
-        public string Result { get; set; } = string.Empty;
+        public string Result { get; set; } = "";
     }
 
     public class ViewResult<TResult> : IViewResult<TResult>

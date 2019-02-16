@@ -2,7 +2,7 @@
 
 namespace SeLie.Infrastructure.Base
 {
-    public class EntityLevelBase : EntityBase
+    public class EntityLevelBase : EntityBase, ILevel
     {
         public virtual int Level { get; set; } = 1;
 
