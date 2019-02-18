@@ -53,7 +53,7 @@ namespace SeLie.Infrastructure
 
         public static string SafeTrim(this string str) => string.IsNullOrWhiteSpace(str) ? "" : str.Trim();
 
-        public static object SafeTrim(this object obj)
+        public static TObject SafeTrim<TObject>(this TObject obj)
         {
             foreach (var val in obj.GetType().GetProperties().Where(_ => _.PropertyType == typeof(string)))
                 val.SetValue(obj, (val.GetValue(obj) as string).SafeTrim());
