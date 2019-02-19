@@ -10,7 +10,7 @@ namespace SeLie.Infrastructure.Base
         {
         }
 
-        public PagedViewResult(IEnumerable<TResult> input, TPagedInputDto pagedInputDto)
+        public PagedViewResult(IQueryable<TResult> input, TPagedInputDto pagedInputDto)
         {
             Pagination = new PaginationDto
             {
