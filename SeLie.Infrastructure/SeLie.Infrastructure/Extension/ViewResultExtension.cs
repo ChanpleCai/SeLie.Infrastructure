@@ -27,9 +27,8 @@ namespace SeLie.Infrastructure
 
         public static ViewResult<TResult> Failed<TResult>(Exception e) => new ViewResult<TResult>(false, e.Message);
 
-        public static PagedViewResult<TResult, TPagedInputDto> PagedView<TResult, TPagedInputDto>(this TResult query, TPagedInputDto input)
+        public static PagedViewResult<TResult, TPagedInputDto> PagedView<TResult, TPagedInputDto>(this IQueryable<TResult> query, TPagedInputDto input)
             where TPagedInputDto : PagedInputDto
-            where TResult : IQueryable<TResult>
             => new PagedViewResult<TResult, TPagedInputDto>(query, input);
 
         public static PagedViewResult<TResult, TPagedInputDto> Success<TResult, TPagedInputDto>(
