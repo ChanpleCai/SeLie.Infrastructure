@@ -4,9 +4,6 @@ open System
 open Xunit
 open FsUnit
 open SeLie.Infrastructure
-    
-let inline add x y = x + y
-
 
 [<Fact>]
 let ``CheckNotNull 1 should not throw exception``() = 
