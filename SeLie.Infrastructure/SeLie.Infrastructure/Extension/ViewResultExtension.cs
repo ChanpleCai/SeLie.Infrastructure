@@ -10,10 +10,10 @@ namespace SeLie.Infrastructure
 
         public static ViewResult Success(string message) => new ViewResult(true, message);
 
-        public static ViewResult<TResult> Success<TResult>(this TResult view) => new ViewResult<TResult>(true, view);
+        public static ViewResult<TResult> Success<TResult>(this TResult view) => new ViewResult<TResult>(true, view.DeciamlTrim());
 
         public static ViewResult<TResult> Success<TResult>(this TResult view, string message) =>
-            new ViewResult<TResult>(true, message, view);
+            new ViewResult<TResult>(true, message, view.DeciamlTrim());
 
         public static ViewResult Failed() => new ViewResult(false);
 

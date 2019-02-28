@@ -61,6 +61,18 @@ namespace SeLie.Infrastructure
             return obj;
         }
 
+        public static TObject DeciamlTrim<TObject>(this TObject obj)
+        {
+            foreach (var val in obj.GetType().GetProperties().Where(_ => _.PropertyType == typeof(decimal)))
+                val.SetValue(obj, Convert.ToDecimal(val.GetValue(obj)).Normalize());
+
+            return obj;
+        }
+
+
+        // https://stackoverflow.com/questions/4298719/parse-decimal-and-filter-extra-0-on-the-right
+        public static decimal Normalize(this decimal value) => value / 1.0000_0000_0000_0000_0000_0000_0000m;
+
         #endregion
     }
 }
